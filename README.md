@@ -75,3 +75,5 @@ npm run deploy:netlify
 ```
 
 ## [Netlify Live Preview](https://storybooknextjs.netlify.app)
+
+## [![Netlify Deploy Status](https://api.netlify.com/api/v1/badges/728fbaba-c972-49ca-a5a8-8284670a6ae9/deploy-status)](https://app.netlify.com/sites/storybooknextjs/deploys)
