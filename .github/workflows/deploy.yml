@@ -1,0 +1,40 @@
+name: Deploy to Netlify
+
+on:
+  push:
+    branches:
+      - main  # Deploy only when pushing to the main branch
+  pull_request:
+    branches:
+      - main  # Run for pull requests targeting the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # Use a Node.js version compatible with Next.js
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test # Optional: run tests if you have them
+
+      - name: Build the app
+        run: npm run build
+
+      - name: Deploy to Netlify
+        uses: netlify/actions@v2
+        with:
+          command: deploy
+          dir: out # Adjust to your app's build output directory
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
